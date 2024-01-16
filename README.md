@@ -1,5 +1,5 @@
 # elementary automata
-inspired by [this video](https://www.youtube.com/watch?v=Ggxt06qSAe4)
+inspired by [this video](https://www.youtube.com/watch?v=Ggxt06qSAe4) <br>
 still wip and still learning rust
 
 ## How to run
