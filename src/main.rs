@@ -25,5 +25,13 @@ fn print_cells(cells: &[bool; CELL_LENGTH], alive_char: &char, dead_char: &char,
 }
 
 fn calculate_new_cells(cells: &mut [bool;CELL_LENGTH], ruleset: &u8) {
-    // TODO: finish this
+    for i in 0..CELL_LENGTH {
+        // get left, source, and right cells with wraparound
+        let left   = cells[(i + CELL_LENGTH - 1) % CELL_LENGTH]; // weird order to prevent panic on negative
+        let source = cells[i];
+        let right  = cells[(i + CELL_LENGTH + 1) % CELL_LENGTH];
+
+        // make binary number
+        let num = (left as usize) * 4 + (source as usize) * 2 + (right as usize);
+    }
 }
