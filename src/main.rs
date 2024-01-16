@@ -10,7 +10,7 @@ fn main() {
     let mut cells = [false; CELL_LENGTH]; 
     cells[CELL_LENGTH / 2] = true;
 
-    while i in 0..LOOP_AMOUNT {
+    for i in 0..LOOP_AMOUNT {
         print_cells(&cells, &ALIVE_CHAR, &DEAD_CHAR, &WALL_CHAR);
         calculate_new_cells(&mut cells, &RULESET);
     }
