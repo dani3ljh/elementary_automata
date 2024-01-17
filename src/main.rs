@@ -19,7 +19,11 @@ fn main() {
 fn print_cells(cells: &[bool; CELL_LENGTH], alive_char: &char, dead_char: &char, wall_char: &char) {
     print!("{wall_char}");
     for cell in cells {
-        print!("{}", if *cell {alive_char} else {dead_char});
+        print!("{}", if *cell {
+            alive_char
+        } else {
+            dead_char
+        })
     }
     println!("{wall_char}");
 }
