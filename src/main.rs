@@ -1,13 +1,11 @@
-const CELL_LENGTH: usize = 100;
-const LOOP_AMOUNT: u32 = 30;
+const CELL_LENGTH: usize = 101;
+const LOOP_AMOUNT: u32 = 50;
 
 fn main() {
     const RULESET: u8 = 90;
-    const ALIVE_CHAR: char = '#'; // full block
-    const DEAD_CHAR: char = '_';
+    const ALIVE_CHAR: char = '█'; // full block
+    const DEAD_CHAR: char = ' ';
     const WALL_CHAR: char = '|';
-
-    println!("printing rule {RULESET}:");
 
     let mut cells = [false; CELL_LENGTH]; 
     cells[CELL_LENGTH / 2] = true;
@@ -41,7 +39,7 @@ fn calculate_new_cells(cells: [bool; CELL_LENGTH], ruleset: &u8) -> [bool; CELL_
         // make binary number
         let num: u8 = (left as u8) * 4 + (source as u8) * 2 + (right as u8);
 
-        // bit operations to extract from ruleset
+        // bit operations to extract bool from ruleset
         new_cells[i] = *ruleset & (1 << num) != 0;
     }
     new_cells
