@@ -8,4 +8,4 @@ still learning rust so may not be that good
 1. run `cargo run` in the directory of the project <br>
 
 ## Screen Shots
-![Rule 90, sierpinski triangle](Screenshot 2024-01-17 013112.png)
+![Rule 90, sierpinski triangle](./Screenshot 2024-01-17 013112.png)
