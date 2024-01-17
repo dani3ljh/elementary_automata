@@ -8,4 +8,4 @@ still learning rust so may not be that good
 1. run `cargo run` in the directory of the project <br>
 
 ## Screen Shots
-![Rule 90, sierpinski triangle](https://github.com/dani3ljh/elementary_automata/blob/main/Screenshot/Rule90-101x50.png?raw=true)
+![Rule 90, sierpinski triangle](https://github.com/dani3ljh/elementary_automata/blob/main/Screenshots/Rule90-101x50.png?raw=true)
