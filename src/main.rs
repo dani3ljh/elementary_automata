@@ -1,18 +1,20 @@
-const CELL_LENGTH: usize = 30;
+const CELL_LENGTH: usize = 100;
 const LOOP_AMOUNT: u32 = 30;
 
 fn main() {
-    const RULESET: u8 = 0b01001101;
-    const ALIVE_CHAR: char = '█'; // full block
-    const DEAD_CHAR: char = ' ';
+    const RULESET: u8 = 90;
+    const ALIVE_CHAR: char = '#'; // full block
+    const DEAD_CHAR: char = '_';
     const WALL_CHAR: char = '|';
+
+    println!("printing rule {RULESET}:");
 
     let mut cells = [false; CELL_LENGTH]; 
     cells[CELL_LENGTH / 2] = true;
 
-    for i in 0..LOOP_AMOUNT {
+    for _ in 0..LOOP_AMOUNT {
         print_cells(&cells, &ALIVE_CHAR, &DEAD_CHAR, &WALL_CHAR);
-        calculate_new_cells(&mut cells, &RULESET);
+        cells = calculate_new_cells(cells, &RULESET);
     }
 }
 
@@ -28,14 +30,19 @@ fn print_cells(cells: &[bool; CELL_LENGTH], alive_char: &char, dead_char: &char,
     println!("{wall_char}");
 }
 
-fn calculate_new_cells(cells: &mut [bool;CELL_LENGTH], ruleset: &u8) {
-    for i in 0..CELL_LENGTH {
+fn calculate_new_cells(cells: [bool; CELL_LENGTH], ruleset: &u8) -> [bool; CELL_LENGTH]{
+    let mut new_cells = cells.clone();
+    for i in 1..CELL_LENGTH - 1 {
         // get left, source, and right cells with wraparound
-        let left   = cells[(i + CELL_LENGTH - 1) % CELL_LENGTH]; // weird order to prevent panic on negative
+        let left   = cells[i - 1]; // weird order to prevent panic on negative
         let source = cells[i];
-        let right  = cells[(i + CELL_LENGTH + 1) % CELL_LENGTH];
+        let right  = cells[i + 1];
 
         // make binary number
-        let num = (left as usize) * 4 + (source as usize) * 2 + (right as usize);
+        let num: u8 = (left as u8) * 4 + (source as u8) * 2 + (right as u8);
+
+        // bit operations to extract from ruleset
+        new_cells[i] = *ruleset & (1 << num) != 0;
     }
+    new_cells
 }
