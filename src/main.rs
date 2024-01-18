@@ -1,5 +1,5 @@
-const CELL_LENGTH: usize = 101;
-const LOOP_AMOUNT: u32 = 50;
+const WINDOW_WIDTH: usize = 101;
+const WINDOW_HEIGHT: u32 = 50;
 
 fn main() {
     const RULESET: u8 = 90;
@@ -7,16 +7,16 @@ fn main() {
     const DEAD_CHAR: char = ' ';
     const WALL_CHAR: char = '|';
 
-    let mut cells = [false; CELL_LENGTH]; 
-    cells[CELL_LENGTH / 2] = true;
+    let mut cells = [false; WINDOW_WIDTH]; 
+    cells[WINDOW_WIDTH / 2] = true;
 
-    for _ in 0..LOOP_AMOUNT {
+    for _ in 0..WINDOW_HEIGHT {
         print_cells(&cells, &ALIVE_CHAR, &DEAD_CHAR, &WALL_CHAR);
         cells = calculate_new_cells(cells, &RULESET);
     }
 }
 
-fn print_cells(cells: &[bool; CELL_LENGTH], alive_char: &char, dead_char: &char, wall_char: &char) {
+fn print_cells(cells: &[bool; WINDOW_WIDTH], alive_char: &char, dead_char: &char, wall_char: &char) {
     print!("{wall_char}");
     for cell in cells {
         print!("{}", if *cell {
@@ -28,13 +28,13 @@ fn print_cells(cells: &[bool; CELL_LENGTH], alive_char: &char, dead_char: &char,
     println!("{wall_char}");
 }
 
-fn calculate_new_cells(cells: [bool; CELL_LENGTH], ruleset: &u8) -> [bool; CELL_LENGTH]{
+fn calculate_new_cells(cells: [bool; WINDOW_WIDTH], ruleset: &u8) -> [bool; WINDOW_WIDTH]{
     let mut new_cells = cells.clone();
-    for i in 0..CELL_LENGTH {
+    for i in 0..WINDOW_WIDTH {
         // get left, source, and right cells
-        let left   = cells[(i + CELL_LENGTH - 1) % CELL_LENGTH]; // weird order to prevent panic on negative
+        let left   = cells[(i + WINDOW_WIDTH - 1) % WINDOW_WIDTH]; // weird order to prevent panic on negative
         let source = cells[i];
-        let right  = cells[(i + CELL_LENGTH + 1) % CELL_LENGTH];
+        let right  = cells[(i + WINDOW_WIDTH + 1) % WINDOW_WIDTH];
 
         // make binary number
         let num: u8 = (left as u8) * 4 + (source as u8) * 2 + (right as u8);
