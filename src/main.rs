@@ -30,11 +30,11 @@ fn print_cells(cells: &[bool; CELL_LENGTH], alive_char: &char, dead_char: &char,
 
 fn calculate_new_cells(cells: [bool; CELL_LENGTH], ruleset: &u8) -> [bool; CELL_LENGTH]{
     let mut new_cells = cells.clone();
-    for i in 1..CELL_LENGTH - 1 {
+    for i in 0..CELL_LENGTH {
         // get left, source, and right cells
-        let left   = cells[i - 1]; // weird order to prevent panic on negative
+        let left   = cells[(i + CELL_LENGTH - 1) % CELL_LENGTH]; // weird order to prevent panic on negative
         let source = cells[i];
-        let right  = cells[i + 1];
+        let right  = cells[(i + CELL_LENGTH + 1) % CELL_LENGTH];
 
         // make binary number
         let num: u8 = (left as u8) * 4 + (source as u8) * 2 + (right as u8);
