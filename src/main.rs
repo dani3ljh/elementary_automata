@@ -1,5 +1,5 @@
-const WINDOW_WIDTH: usize = 101;
-const WINDOW_HEIGHT: u32 = 50;
+const WINDOW_WIDTH:  usize = 101;
+const WINDOW_HEIGHT: usize = 50;
 
 fn main() {
     const RULESET: u8 = 90;
