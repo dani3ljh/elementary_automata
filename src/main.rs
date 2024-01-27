@@ -37,7 +37,7 @@ fn calculate_new_cells(cells: [bool; WINDOW_WIDTH], ruleset: &u8) -> [bool; WIND
         let right  = cells[(i + WINDOW_WIDTH + 1) % WINDOW_WIDTH];
 
         // make binary number
-        let num: u8 = (left as u8) * 4 + (source as u8) * 2 + (right as u8);
+        let num: u8 = ((left as u8) << 2) | ((source as u8) << 1) | (right as u8);
 
         // bit operations to extract bool from ruleset
         new_cells[i] = *ruleset & (1 << num) != 0;
