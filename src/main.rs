@@ -19,11 +19,8 @@ fn main() {
 fn print_cells(cells: &[bool; WINDOW_WIDTH], alive_char: &char, dead_char: &char, wall_char: &char) {
     print!("{wall_char}");
     for cell in cells {
-        print!("{}", if *cell {
-            alive_char
-        } else {
-            dead_char
-        })
+        let charToPrint = if *cell { alive_char } else { dead_char };
+        print!("{charToPrint}")
     }
     println!("{wall_char}");
 }
